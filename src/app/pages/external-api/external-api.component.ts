@@ -8,8 +8,6 @@ import { ApiService } from 'src/app/api.service';
   selector: 'app-external-api',
   templateUrl: './external-api.component.html',
   styleUrls: ['./external-api.component.css'],
-  standalone: true,
-  imports: [HighlightModule, NgClass, NgIf]
 })
 export class ExternalApiComponent {
   responseJson: string;

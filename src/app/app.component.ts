@@ -7,9 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  standalone: true,
-  imports: [RouterOutlet, NavBarComponent, FooterComponent],
 })
 export class AppComponent {
-  title = 'Auth0 Angular SDK Sample';
+  title = 'DeckGPT';
 }
