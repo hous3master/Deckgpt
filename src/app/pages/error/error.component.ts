@@ -8,6 +8,11 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-error',
   templateUrl: './error.component.html',
+  standalone: true,
+  imports: [
+    AsyncPipe,
+    NgIf
+  ]
 })
 export class ErrorComponent implements OnInit {
 

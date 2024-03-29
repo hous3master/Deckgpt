@@ -9,6 +9,14 @@ import { AsyncPipe, NgIf } from '@angular/common';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  standalone: true,
+  imports: [
+    HomeContentComponent,
+    HeroComponent,
+    LoadingComponent,
+    AsyncPipe,
+    NgIf
+  ]
 })
 export class HomeComponent {
   constructor(public auth: AuthService) {}

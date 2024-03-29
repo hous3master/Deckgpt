@@ -1,19 +1,29 @@
 <mat-toolbar>
-  <button mat-icon-button (click)="(dummy)">
+  <button mat-button>
     <mat-icon class="mat-18">description</mat-icon>
+    DeckGPT
   </button>
-
-  <span>DeckGPT</span>
   <a mat-button routerLink="/" class="nav-item">Home</a>
-  <a mat-button routerLink="/pricing" class="nav-item">Pricing</a>
+  <a mat-button routerLink="/pricing" class="nav-item" color="accent">Pricing</a>
   <a mat-button routerLink="/external-api" class="nav-item" *ngIf="auth.isAuthenticated$ | async">Test API</a>
   <a mat-button routerLink="/playground" class="nav-item" *ngIf="auth.isAuthenticated$ | async">Playground</a>
-  <span class="d-flex mx-auto"></span>
-  <button mat-raised-button (click)="loginWithRedirect()" class="nav-item" *ngIf="(auth.isAuthenticated$ | async) === false">Sign in</button>
 
-  <button mat-button [matMenuTriggerFor]="menu">Profile</button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/profile">Profile</button>
-    <button mat-menu-item (click)="logout()">Log out</button>
-  </mat-menu>
+  <span class="d-flex mx-auto"></span>
+
+  <button mat-raised-button color="primary" (click)="loginWithRedirect()" class="nav-item" *ngIf="(auth.isAuthenticated$ | async) === false">Sign in</button>
+
+  <button mat-button class="btn btn-default" [matMenuTriggerFor]="menu" *ngIf="auth.user$ | async as user">
+    <div class="d-flex flex-row align-items-center">
+      <p class="my-auto">{{ user.name }}</p>
+      <img alt="Profile picture" class="nav-user-profile d-inline-block rounded-circle mx-1" style="width: 32px;" [src]="user.picture" />
+    </div>
+  </button>
+
+
 </mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="/profile">Profile</button>
+  <button mat-menu-item (click)="logout()">Log out</button>
+</mat-menu>
+

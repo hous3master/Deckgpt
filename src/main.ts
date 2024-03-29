@@ -7,9 +7,8 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { AppModule } from './app/app.module';
 
-bootstrapApplication(AppModule, {
+bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(withInterceptors([authHttpInterceptorFn])),
     provideRouter(routes),

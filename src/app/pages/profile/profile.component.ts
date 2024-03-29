@@ -7,6 +7,8 @@ import { HighlightModule } from 'ngx-highlightjs';
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
+  standalone: true,
+  imports: [HighlightModule, AsyncPipe, NgIf],
 })
 export class ProfileComponent implements OnInit {
   profileJson: string = null;

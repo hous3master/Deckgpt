@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '@auth0/auth0-angular';
-import { AsyncPipe, CommonModule, DOCUMENT, NgIf } from '@angular/common';
+import { AsyncPipe, DOCUMENT, NgIf } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   NgbCollapse,
@@ -10,16 +10,34 @@ import {
   NgbDropdownToggle,
 } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { HttpClientModule } from '@angular/common/http';
-import { MatIconModule } from '@angular/material/icon';
+// import matbutton
+import { MatButton, MatButtonModule } from '@angular/material/button';
+// Matmenu
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
+// maticon
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+// mattoolbar
+import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css'],   
+  styleUrls: ['./nav-bar.component.css'],
+  standalone: true,
+  imports: [
+    FontAwesomeModule,
+    NgbDropdownToggle,
+    NgbDropdownMenu,
+    NgbDropdown,
+    NgbCollapse,
+    AsyncPipe,
+    NgIf,
+    RouterLink,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatToolbarModule,
+  ],
 })
 export class NavBarComponent {
   isCollapsed = true;
@@ -37,9 +55,5 @@ export class NavBarComponent {
 
   logout() {
     this.auth.logout({ logoutParams: { returnTo: this.doc.location.origin } });
-  }
-
-  dummy() {
-    console.log('This is a dummy function');
   }
 }

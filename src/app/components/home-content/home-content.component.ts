@@ -6,6 +6,8 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
   selector: 'app-home-content',
   templateUrl: './home-content.component.html',
   styleUrls: ['./home-content.component.css'],
+  standalone: true,
+  imports: [FontAwesomeModule]
 })
 export class HomeContentComponent {
   faLink = faLink;
