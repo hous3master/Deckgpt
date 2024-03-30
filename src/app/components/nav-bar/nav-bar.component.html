@@ -1,12 +1,11 @@
 <mat-toolbar>
-  <button mat-button>
+  <button mat-button routerLink="/" >
     <mat-icon class="mat-18">description</mat-icon>
     DeckGPT
   </button>
   <a mat-button routerLink="/" class="nav-item">Home</a>
   <a mat-button routerLink="/pricing" class="nav-item" color="accent">Pricing</a>
   <a mat-button routerLink="/external-api" class="nav-item" *ngIf="auth.isAuthenticated$ | async">Test API</a>
-  <a mat-button routerLink="/playground" class="nav-item" *ngIf="auth.isAuthenticated$ | async">Playground</a>
 
   <span class="d-flex mx-auto"></span>
 
