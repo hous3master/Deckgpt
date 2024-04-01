@@ -4,8 +4,9 @@ const helmet = require('helmet');
 const cors = require('cors');
 const { auth } = require('express-oauth2-jwt-bearer');
 const authConfig = require('./auth_config.json');
-
 const app = express();
+const axios = require('axios');
+const jwt = require('jsonwebtoken');
 
 if (
   !authConfig.domain ||
@@ -37,6 +38,23 @@ app.get('/api/external', checkJwt, (req, res) => {
     msg: 'Your access token was successfully validated!',
   });
 });
+
+app.get('/api/test1', checkJwt, (req, res) => {
+  const token = req.headers.authorization.split(' ')[1]; // assuming the token is in the Authorization header as a Bearer token
+  const decoded = jwt.decode(token);
+
+  res.send({
+    msg: 'Here is your decoded token:',
+    token: decoded
+  });
+});
+
+app.get('/api/test2', checkJwt, (req, res) => {
+  res.send({
+    msg: 'Your access token was successfully validated!',
+  });
+});
+
 
 const port = process.env.API_SERVER_PORT || 3001;
 
