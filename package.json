@@ -34,6 +34,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "@popperjs/core": "^2.11.6",
     "cors": "^2.8.5",
     "express": "^4.19.2",

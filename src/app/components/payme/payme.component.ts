@@ -40,11 +40,25 @@ export class PaymeComponent implements OnInit {
           });
         },
         onApprove: async (data, actions) => {
-          const order = await actions.order.capture();
-          console.log(order);
-          this.paidFor = true;
-
-          // Upgrade user role
+          try {
+            console.log(data);
+            const order = this.api.test2$({
+              orderID: data.orderID
+            }).subscribe(
+              {
+                next: (res) => {
+                  console.log(res);
+                  this.paidFor = true;
+                },
+                error: (err) => {
+                  console.log(err);
+                },
+              
+              }
+            );
+          } catch (err) {
+            console.log(err);
+          }
         },
         onError: (err) => {
           console.log(err);

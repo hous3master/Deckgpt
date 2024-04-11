@@ -7,6 +7,10 @@ const authConfig = require('./auth_config.json');
 const app = express();
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
+const paypal = require('@paypal/checkout-server-sdk');
+const bodyParser = require('body-parser');
+
+
 
 if (
   !authConfig.domain ||
@@ -20,6 +24,7 @@ if (
   process.exit();
 }
 
+app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(
@@ -49,10 +54,23 @@ app.get('/api/test1', checkJwt, (req, res) => {
   });
 });
 
-app.get('/api/test2', checkJwt, (req, res) => {
-  res.send({
-    msg: 'Your access token was successfully validated!',
-  });
+let client = new paypal.core.PayPalHttpClient(new paypal.core.SandboxEnvironment('AajKcSlyoUDpHMxmRKMAo5UBSW-_b32ljcUAkhxY8AMNHhRCfa2HdmYkjxgwCh6-p4xRj1rFimtiPFUb', 'ECZA9R_rPF_WGkOkqOwpAwLQ6EMiiKbIBIj2cls42lh3fdEny0Rif77MuH7Rwi96NJ8uy5fKT5PEklYc'));
+
+app.post('/api/test2', async (req, res) => {
+  if (!req.body.orderID) {
+    return res.status(400).json({ message: 'Order ID is required' });
+  }
+
+  let request = new paypal.orders.OrdersCaptureRequest(req.body.orderID);
+  request.requestBody({});
+
+  try {
+    let response = await client.execute(request);
+    res.json({ message: 'Order successfully captured' });
+  } catch (err) {
+    console.error('PayPal API error:', err);
+    res.status(500).json({ message: 'Error capturing order' });
+  }
 });
 
 

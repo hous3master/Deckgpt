@@ -45,12 +45,6 @@ export class ExternalApiComponent {
   }
 
   test2() {
-    this.api.test2$().subscribe({
-      next: (res) => {
-        this.hasApiError = false;
-        this.responseJson = JSON.stringify(res, null, 2).trim();
-      },
-      error: () => this.hasApiError = true,
-    });
+    // do nothing
   }
 }

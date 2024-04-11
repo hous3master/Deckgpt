@@ -16,7 +16,7 @@ export class ApiService {
     return this.http.get(`${config.apiUri}/api/test1`);
   }
 
-  test2$() {
-    return this.http.get(`${config.apiUri}/api/test2`);
+  test2$(orderData: any) {
+    return this.http.post(`${config.apiUri}/api/test2`, orderData);
   }
 }
